@@ -46,7 +46,7 @@ let draw = () => {
                 console.log(word + " " + status + " " + days);
                 thing.querySelectorAll(".ignore-ui input")[0].checked = true;
                 selectedWordsCount++;
-                selectedWords.push(word + " " + status + "\n");
+                selectedWords.push("\n" + word + " " + status);
             }
         });
 
