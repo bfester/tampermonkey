@@ -10,28 +10,34 @@
 
 (function() {
     'use strict';
+    const sweetenersKeywords = ['ksylitol', 'xylitol', 'erytrotol'];
+    const vegOilsKeywords = ['olej rzepakowy', 'wegańska śmietana', 'wegański majonez'];
+
+    const sweetenersBorderStyle = '2px solid red';
+    const vegOilsBorderStyle = '2px solid yellow';
 
     // Funkcja, która sprawdza i oznacza elementy zawierające określone słowa
-    function markProducts() {
+    function markProducts(keywords, borderStyle) {
         const productTiles = document.querySelectorAll('.product-tile');
-        const keywords = ['ksylitol', 'xylitol', 'erytrotol'];
 
         productTiles.forEach(function(tile) {
             const text = tile.textContent.toLowerCase();
             if (keywords.some(keyword => text.includes(keyword))) {
-                tile.style.border = '2px solid red';
+                tile.style.border = borderStyle;
             }
         });
     }
 
     // Uruchom na początku
-    markProducts();
+    markProducts(vegOilsKeywords, vegOilsBorderStyle);
+    markProducts(sweetenersKeywords, sweetenersBorderStyle);
 
     // Obserwuj zmiany w DOM
     const observer = new MutationObserver(function(mutations) {
         mutations.forEach(function(mutation) {
             if (mutation.addedNodes.length > 0) {
-                markProducts();
+                markProducts(vegOilsKeywords, vegOilsBorderStyle);
+                markProducts(sweetenersKeywords, sweetenersBorderStyle);
                 modifyStyles();
                 removeStickyHeader();
                 removeStickyRight();
