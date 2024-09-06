@@ -11,7 +11,7 @@
 (function() {
     'use strict';
     const sweetenersKeywords = ['ksylitol', 'xylitol', 'xsylitol', 'erytrotol', 'erytrol'];
-    const vegOilsKeywords = ['olej rzepakowy', 'wegańska śmietana', 'wegański majonez'];
+    const vegOilsKeywords = ['olej rzepakowy', 'wegańska śmietana', 'wegański majonez', 'masło roślinne'];
 
     const sweetenersBorderStyle = '2px solid red';
     const vegOilsBorderStyle = '2px solid yellow';
