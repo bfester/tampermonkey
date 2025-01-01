@@ -5,16 +5,20 @@
 // @description  Skrypt oznacza produkty zawierające słowo 'ksylitol' czerwoną ramką
 // @author       Your Name
 // @match        https://panel.fitapetit.com.pl/my-account/my-orders/details/*
+// @match        https://panel.rukolacatering.pl/my-account/my-orders/details/*
 // @grant        none
 // ==/UserScript==
 
 (function() {
     'use strict';
-    const sweetenersKeywords = ['ksylitol', 'xylitol', 'xsylitol', 'erytrotol', 'erytrol'];
+    const sweetenersKeywords = ['ksylitol', 'xylitol', 'xsylitol', 'erytrotol', 'erytrol', 'erytrytol'];
+    const preservativesKeywords = ['substancja konserwująca', 'pirosiarczyn'];
     const vegOilsKeywords = ['olej rzepakowy', 'wegańska śmietana', 'wegański majonez', 'masło roślinne'];
 
     const sweetenersBorderStyle = '2px solid red';
+    const preservativesBorderStyle = '2px dotted #FFA500';
     const vegOilsBorderStyle = '2px solid yellow';
+
 
     // Funkcja, która sprawdza i oznacza elementy zawierające określone słowa
     function markProducts(keywords, borderStyle) {
@@ -30,13 +34,16 @@
 
     // Uruchom na początku
     markProducts(vegOilsKeywords, vegOilsBorderStyle);
+    markProducts(preservativesKeywords, preservativesBorderStyle);
     markProducts(sweetenersKeywords, sweetenersBorderStyle);
+
 
     // Obserwuj zmiany w DOM
     const observer = new MutationObserver(function(mutations) {
         mutations.forEach(function(mutation) {
             if (mutation.addedNodes.length > 0) {
                 markProducts(vegOilsKeywords, vegOilsBorderStyle);
+                markProducts(preservativesKeywords, preservativesBorderStyle);
                 markProducts(sweetenersKeywords, sweetenersBorderStyle);
                 modifyStyles();
                 removeStickyHeader();
